@@ -1,74 +1,110 @@
-# Inventions by A\\Maze — local website
+# Inventions by A\Maze
 
-A bilingual website for the Inventions cocktail bar and A\\Maze Old Port escape games. All fonts and images are stored inside the project, so the design does not depend on hotlinked media.
+Bilingual website for Inventions, the Nikola Tesla-inspired cocktail bar inside A\Maze Old Port in Montréal. The site combines the bar menu, cocktail stories, escape games, private group packages, venue information, and official A\Maze booking links.
 
-## Live site
+## Live routes
 
 - English: https://polinadev.github.io/inventions-by-amaze/
 - Français: https://polinadev.github.io/inventions-by-amaze/fr/
+- Team building: https://polinadev.github.io/inventions-by-amaze/team-building/
+- Événements de groupe: https://polinadev.github.io/inventions-by-amaze/fr/evenements-de-groupe/
 
-Every push to `main` runs the GitHub Pages workflow in `.github/workflows/deploy-pages.yml`. The workflow builds a static version with the correct repository base path, while the existing local Vinext app remains available for development.
+Every push to `main` runs `.github/workflows/deploy-pages.yml`. The workflow installs locked dependencies, runs lint and the full test suite, builds the bilingual static site, and deploys `pages-dist` to GitHub Pages.
 
-## Run it on this Mac
+## Requirements and installation
 
-From Terminal:
+- Node.js `22.13.0` or newer
+- npm
 
 ```bash
 cd "/Users/polina/Documents/old port operations/inventions-local-site"
+npm ci
+cp .env.example .env.local
+```
+
+No secrets or external APIs are required. `.env.example` documents the Pages base path used by the static build.
+
+## Local development
+
+```bash
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Open http://localhost:3000. Alternatively, double-click `Start Inventions.command` in Finder.
 
-Or double-click `Start Inventions.command` in Finder.
-
-## Share it on the local network
-
-Run:
+To share on the same Wi-Fi:
 
 ```bash
 npm run dev:lan
-```
-
-The server binds to `0.0.0.0:3000`. On another device connected to the same Wi-Fi, open:
-
-```text
-http://YOUR-MAC-IP:3000
-```
-
-To find the Mac IP:
-
-```bash
 ipconfig getifaddr en0
 ```
 
-macOS Firewall may ask whether Node can accept incoming connections; allow it for LAN sharing. The Mac must remain awake while the site is being shared.
+Open `http://YOUR-MAC-IP:3000` on the other device. The Mac must stay awake and allow Node through the macOS firewall.
 
-## Checks
+## Production builds and checks
 
 ```bash
 npm run lint
 npm test
-npm run build:pages
 ```
 
-`npm test` creates a production build and checks the server-rendered page.
+`npm test` performs:
 
-## Live content sources
+1. Vinext production build.
+2. Server-rendered English, French, and group-page tests.
+3. GitHub Pages client and SSR builds.
+4. Static SEO, localization, route, sitemap, structured-data, price, and official-link tests.
 
-Content was checked on **August 20, 2026**:
+To preview the exact Pages artifact:
+
+```bash
+PAGES_BASE=/inventions-by-amaze/ npm run build:pages
+PAGES_BASE=/inventions-by-amaze/ npm run preview:pages -- --host 127.0.0.1
+```
+
+## Deployment
+
+Normal release path:
+
+```bash
+git add .
+git commit -m "Describe the change"
+git push origin main
+gh run watch
+```
+
+Manual rebuild, if needed:
+
+```bash
+gh workflow run deploy-pages.yml
+```
+
+The release is complete only after the Pages workflow succeeds and all four public routes are checked on the live URL.
+
+## SEO implementation
+
+- Fully prerendered HTML for all four public routes.
+- Unique English/French titles and descriptions.
+- Self-referencing canonicals and reciprocal `en-CA` / `fr-CA` / `x-default` `hreflang` links.
+- Open Graph and Twitter cards.
+- Schema.org `BarOrPub`, `Organization`, `WebPage`, and `Service` JSON-LD.
+- Generated `robots.txt` and XML sitemap.
+- Semantic headings, descriptive image alt text, official A\Maze relationship links, and local Montréal address data.
+- Optimized WebP cocktail, venue, and game images plus reduced-motion support.
+- A dedicated secondary `I` monogram for compact footer and hospitality touchpoints, derived from the wine-glass application rather than repeating the full hero lockup.
+
+## Content sources
+
+Current operational facts should be verified against:
 
 - https://www.amazemontreal.com/old-port-escape-room-restaurant
+- https://www.amazemontreal.com/fr/jeu-devasion-et-restaurant-vieux-port
 - https://www.amazemontreal.com/old-port-menu
-- the three official Old Port game pages
-- the A\\Maze Old Port Google Maps listing
+- https://www.amazemontreal.com/team-building-activity
+- https://www.amazemontreal.com/fr/evenement-corporatif
+- the official Old Port game pages and A\Maze-owned venue photography
+- `OldPort Cocktail 2026.pdf`, supplied by the owner, for cocktail-story narrative direction
 
-Before any public launch, confirm these source inconsistencies with the team:
+Current owner-approved overrides: House-Roasted Nuts `$8`; Olives or Pickles `$6`.
 
-- Cocktail of the Season is `$17` in the visible list but `$15` in the source modal.
-- The IPA brewery appears as both `Wills` and `Wils`; this site uses `Wills`.
-- The paired wine prices are not labelled by the source, so this site does not call them glass/bottle.
-- Dedicated game pages and the source menu disagree on two success rates; this site uses the dedicated game pages.
-- French and English menu pages differ on a few zero-proof items and prices.
-
-Real venue/game photos were downloaded locally from the official A\\Maze site and its Maps “By owner” gallery. Confirm photographer/reuse rights before publishing outside the business.
+See [Bugs.md](./Bugs.md) for resolved issues and known limitations. Confirm image reuse rights, menu details, prices, hours, and group-package availability before treating the site as the permanent production source of truth.

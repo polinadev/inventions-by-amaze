@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { InventionsPage } from "../page";
 
 export const metadata: Metadata = {
-  title: "Inventions par A\\Maze | Cocktails et jeux d’évasion",
-  description: "Cocktails, vins, bières locales et jeux d’évasion immersifs au Vieux-Port de Montréal.",
+  title: "Bar à cocktails inspiré de Tesla et jeux d’évasion | Inventions Montréal",
+  description: "Découvrez des cocktails inspirés de Tesla, des jeux d’évasion immersifs et des événements privés chez A\\Maze Vieux-Port à Montréal.",
+  alternates: { canonical: "/fr/", languages: { "en-CA": "/", "fr-CA": "/fr/" } },
   openGraph: {
-    title: "Inventions par A\\Maze",
-    description: "Cocktails et jeux d’évasion au Vieux-Port de Montréal.",
+    title: "Bar à cocktails inspiré de Tesla et jeux d’évasion | Inventions Montréal",
+    description: "Découvrez des cocktails inspirés de Tesla, des jeux d’évasion immersifs et des événements privés chez A\\Maze Vieux-Port à Montréal.",
     type: "website",
     images: [{
       url: "/images/inventions-social-preview.png",
