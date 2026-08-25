@@ -11,13 +11,13 @@ type BrandLockupProps = {
 
 export function BrandLockup({ locale = "en", compact = false, className = "" }: BrandLockupProps) {
   return (
-    <span className={`brand-system-lockup${compact ? " brand-system-lockup-compact" : ""}${className ? ` ${className}` : ""}`} aria-label={locale === "fr" ? "Inventions par A Maze" : "Inventions by A Maze"}>
+    <span className={`brand-system-lockup${compact ? " brand-system-lockup-compact" : ""}${className ? ` ${className}` : ""}`} role="img" aria-label={locale === "fr" ? "Inventions par A Maze" : "Inventions by A Maze"}>
       <span className="brand-system-art" aria-hidden="true">
         <img
-          src={sitePath(compact ? "images/inventions-header-lockup.png" : "images/inventions-wordmark-lockup.png")}
+          src={sitePath("images/inventions-primary-wordmark.webp")}
           alt=""
-          width={compact ? 315 : 1010}
-          height={compact ? 195 : 510}
+          width="882"
+          height="374"
         />
       </span>
       <span className="brand-system-parent" aria-hidden="true">

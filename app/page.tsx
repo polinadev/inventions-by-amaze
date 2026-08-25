@@ -162,7 +162,7 @@ const localizeItem = <T extends MenuItem>(item: T, locale: Locale): T => ({
 });
 
 function Monogram({ small = false }: { small?: boolean }) {
-  return <span className={`monogram${small ? " monogram-small" : ""}`} aria-hidden="true"><span>I</span></span>;
+  return <span className={`monogram${small ? " monogram-small" : ""}`} aria-hidden="true"><img src={sitePath("images/inventions-monogram.svg")} alt="" width="4000" height="4000" /></span>;
 }
 
 function OrnamentDivider() {
@@ -316,7 +316,7 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
             <a className="button" href={MAPS_URL} target="_blank" rel="noreferrer">{isFr ? "Obtenir l’itinéraire" : "Get directions"}</a>
           </div>
           <a className="hero-secondary-link" href={escapeGamesUrl}>{isFr ? "Ajouter un jeu d’évasion à votre visite" : "Add an escape game to your visit"} →</a>
-          <div className="hero-meta" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{isFr ? "Sans réservation selon les places" : "Walk-ins welcome"}</span><span>{isFr ? "Aucun jeu requis" : "No game required"}</span><span>{isFr ? "Dans A\\Maze Vieux-Port" : "Inside A\\Maze Old Port"}</span></div>
+          <div className="hero-meta" role="group" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{isFr ? "Sans réservation selon les places" : "Walk-ins welcome"}</span><span>{isFr ? "Aucun jeu requis" : "No game required"}</span><span>{isFr ? "Dans A\\Maze Vieux-Port" : "Inside A\\Maze Old Port"}</span></div>
         </div>
         <div className="hero-visual">
           <img className="hero-bar-photo" src={sitePath("images/hero-cocktails.jpg")} alt={isFr ? "Trois cocktails signatures servis chez Inventions dans le Vieux-Montréal" : "Three signature cocktails served at Inventions in Old Montreal"} fetchPriority="high" decoding="async" width="1800" height="1800" />
@@ -349,7 +349,7 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
           <div><p className="eyebrow">{isFr ? "Boissons et bouchées" : "Drinks & small plates"}</p><h2 id="menu-title">{isFr ? "Menu de cocktails" : "Cocktail menu"}</h2></div>
           <p>{t("Select a cocktail to read the story behind the invention.")}</p>
         </div>
-        <div className="menu-tabs" aria-label={isFr ? "Catégories du menu" : "Menu categories"}>
+        <div className="menu-tabs" role="group" aria-label={isFr ? "Catégories du menu" : "Menu categories"}>
           {menuTabs.map((tab, index) => <button key={tab.id} type="button" aria-pressed={menuTab === tab.id} className={menuTab === tab.id ? "active" : ""} onClick={() => chooseMenuTab(tab.id)}><span>0{index + 1}</span>{tab.label}</button>)}
         </div>
         <div className={`menu-board section-shell${menuTab === "cocktails" ? " menu-board-cocktails" : ""}`} id="menu-panel">

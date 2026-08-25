@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 4000" role="img" aria-labelledby="title">
+  <title id="title">Inventions monogram</title>
+  <circle cx="2000" cy="2000" r="1220" fill="none" stroke="#bf8a50" stroke-width="42"/>
+  <path d="M215 0L34 0Q19 0 19-11Q19-20 32-23L55-27Q76-31 82.5-38Q89-45 89-66V-654Q89-675 82.5-682Q76-689 55-693L32-697Q19-700 19-709Q19-720 34-720H215Q230-720 230-709Q230-700 217-697L194-693Q173-689 166.5-682Q160-675 160-654V-66Q160-45 166.5-38Q173-31 194-27L217-23Q230-20 230-11Q230 0 215 0Z" transform="translate(1776 2648) scale(1.8)" fill="#e9d9bc"/>
+  <path d="M930 3430L3070 570" fill="none" stroke="#bf8a50" stroke-width="42" stroke-linecap="square"/>
+</svg>

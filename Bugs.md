@@ -20,6 +20,9 @@
 - The former bartender hero image and awkward mobile inset were replaced with recent cocktail photography; responsive checks show no horizontal overflow at 390 px or 1440 px.
 - Private events and team building now have bar-first landing pages, published-capacity context, optional game add-ons, custom-quote language, and a structured inquiry form.
 - Dedicated bilingual menu, cocktail-bar, private-event, team-building, escape-game, and FAQ routes are prerendered and included in the 14-URL sitemap.
+- The hero/header lockup no longer relies on mismatched fixed aspect ratios, `overflow: hidden`, or `mix-blend-mode`; the full ornament and wordmark now remain visible and optically centered at every breakpoint.
+- The reusable footer/menu monogram now uses the same outlined `I`-in-circle SVG geometry as the wine-glass production mark instead of a CSS approximation.
+- The brand lockup and labelled hero/menu groups now expose valid ARIA roles instead of applying labels to semantically neutral elements.
 
 ## Known limitations
 

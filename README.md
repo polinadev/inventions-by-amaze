@@ -98,6 +98,7 @@ The release is complete only after the Pages workflow succeeds and the homepage,
 - Semantic headings, descriptive image alt text, official A\Maze relationship links, and local Montréal address data.
 - Optimized WebP cocktail, venue, and game images plus reduced-motion support.
 - A dedicated secondary `I` monogram for compact footer and hospitality touchpoints, derived from the wine-glass application rather than repeating the full hero lockup.
+- A single transparent Inventions wordmark serves the hero and compact headers at its intrinsic aspect ratio; the official A\Maze signature is composed separately for `BY` / `PAR` localization without CSS cropping or blend modes.
 - Direct, intent-matched pages for `cocktail bar Old Montreal`, menu, private events, team building, escape games, and FAQ in English and French.
 - A private-event inquiry form that prepares an email locally; the static site does not transmit or store form data.
 - The hero and event pages use recent owner-supplied venue photography optimized for web delivery.
