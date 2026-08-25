@@ -1,6 +1,6 @@
 # Inventions by A\Maze
 
-Bilingual website for Inventions, the Nikola Tesla-inspired cocktail bar inside A\Maze Old Port in Montréal. The site combines the bar menu, cocktail stories, escape games, private group packages, venue information, and official A\Maze booking links.
+Bilingual website for Inventions, the Nikola Tesla-inspired cocktail bar inside A\Maze Old Port in Montréal. The bar is the primary product; escape games are presented as an optional addition. The site combines the current menu, cocktail stories, private-event inquiries, team-building packages, venue information, and official A\Maze links.
 
 ## Live routes
 
@@ -8,6 +8,12 @@ Bilingual website for Inventions, the Nikola Tesla-inspired cocktail bar inside 
 - Français: https://polinadev.github.io/inventions-by-amaze/fr/
 - Team building: https://polinadev.github.io/inventions-by-amaze/team-building/
 - Événements de groupe: https://polinadev.github.io/inventions-by-amaze/fr/evenements-de-groupe/
+- Cocktail bar: https://polinadev.github.io/inventions-by-amaze/cocktail-bar-old-montreal/
+- Bar à cocktails: https://polinadev.github.io/inventions-by-amaze/fr/bar-a-cocktails-vieux-montreal/
+- Menu: `/menu/` and `/fr/menu/`
+- Private events: `/private-events/` and `/fr/evenements-prives/`
+- Escape games: `/escape-games/` and `/fr/jeux-evasion/`
+- FAQ: `/faq/` and `/fr/faq/`
 
 Every push to `main` runs `.github/workflows/deploy-pages.yml`. The workflow installs locked dependencies, runs lint and the full test suite, builds the bilingual static site, and deploys `pages-dist` to GitHub Pages.
 
@@ -51,7 +57,7 @@ npm test
 `npm test` performs:
 
 1. Vinext production build.
-2. Server-rendered English, French, and group-page tests.
+2. Server-rendered English, French, focused SEO-page, and event-page tests.
 3. GitHub Pages client and SSR builds.
 4. Static SEO, localization, route, sitemap, structured-data, price, and official-link tests.
 
@@ -79,19 +85,22 @@ Manual rebuild, if needed:
 gh workflow run deploy-pages.yml
 ```
 
-The release is complete only after the Pages workflow succeeds and all four public routes are checked on the live URL.
+The release is complete only after the Pages workflow succeeds and the homepage, French homepage, menu, private-events, team-building, escape-games, FAQ, sitemap, and representative French routes are checked on the live URL.
 
 ## SEO implementation
 
-- Fully prerendered HTML for all four public routes.
+- Fully prerendered HTML for all 14 public routes.
 - Unique English/French titles and descriptions.
 - Self-referencing canonicals and reciprocal `en-CA` / `fr-CA` / `x-default` `hreflang` links.
 - Open Graph and Twitter cards.
-- Schema.org `BarOrPub`, `Organization`, `WebPage`, and `Service` JSON-LD.
+- Schema.org `BarOrPub`, `Organization`, `WebPage`, `Menu`, and `Service` JSON-LD.
 - Generated `robots.txt` and XML sitemap.
 - Semantic headings, descriptive image alt text, official A\Maze relationship links, and local Montréal address data.
 - Optimized WebP cocktail, venue, and game images plus reduced-motion support.
 - A dedicated secondary `I` monogram for compact footer and hospitality touchpoints, derived from the wine-glass application rather than repeating the full hero lockup.
+- Direct, intent-matched pages for `cocktail bar Old Montreal`, menu, private events, team building, escape games, and FAQ in English and French.
+- A private-event inquiry form that prepares an email locally; the static site does not transmit or store form data.
+- The hero and event pages use recent owner-supplied venue photography optimized for web delivery.
 
 ## Content sources
 

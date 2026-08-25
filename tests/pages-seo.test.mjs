@@ -9,6 +9,9 @@ test("static pages are prerendered with bilingual SEO metadata", async () => {
   const french = await read("fr/index.html");
   const team = await read("team-building/index.html");
   const teamFrench = await read("fr/evenements-de-groupe/index.html");
+  const menu = await read("menu/index.html");
+  const privateEvents = await read("private-events/index.html");
+  const faqFrench = await read("fr/faq/index.html");
 
   assert.match(english, /<html lang="en">/);
   assert.match(english, /rel="canonical" href="https:\/\/polinadev\.github\.io\/inventions-by-amaze\/"/);
@@ -26,17 +29,20 @@ test("static pages are prerendered with bilingual SEO metadata", async () => {
   assert.match(french, /<html lang="fr">/);
   assert.match(french, /hreflang="en-CA"/);
   assert.match(french, /Lire son histoire/);
-  assert.match(french, /inventions-wordmark-lockup-fr-transparent\.webp/);
-  assert.match(french, /Inventions par A\\Maze\. Le courant passe\./);
+  assert.match(french, /brand-system-lockup/);
+  assert.match(french, /Un laboratoire de cocktails dans le Vieux-Montréal/);
   const frenchVisible = french.slice(french.indexOf('<div id="root">'));
   assert.doesNotMatch(frenchVisible, /Book an experience|View the menu|The current is on|Read its story|Story open|Opening hours|Gift cards|Part of the family|English version/);
-  assert.match(team, /Old Port Team Building &amp; Group Events/);
+  assert.match(team, /Team Building in Montreal Old Port/);
   assert.match(team, /\$1,000 \+ tax/);
-  assert.match(teamFrench, /Team building et événements de groupe/);
+  assert.match(teamFrench, /Team building au Vieux-Port de Montréal/);
   assert.match(teamFrench, /1 000 \$ \+ taxes/);
-  assert.match(teamFrench, /inventions-header-lockup-fr-transparent\.webp/);
+  assert.match(teamFrench, /brand-system-lockup/);
   const teamFrenchVisible = teamFrench.slice(teamFrench.indexOf('<div id="root">'));
   assert.doesNotMatch(teamFrenchVisible, /Bring the team|Switch on the current|Current packages|Choose your experiment|Back to Inventions/);
+  assert.match(menu, /Inventions cocktail menu/);
+  assert.match(privateEvents, /Make the bar yours/);
+  assert.match(faqFrench, /Questions fréquentes/);
 });
 
 test("robots, sitemap and 404 are search-safe", async () => {
@@ -44,7 +50,7 @@ test("robots, sitemap and 404 are search-safe", async () => {
   const sitemap = await read("sitemap.xml");
   const notFound = await read("404.html");
   assert.match(robots, /Sitemap: https:\/\/polinadev\.github\.io\/inventions-by-amaze\/sitemap\.xml/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 4);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 14);
   assert.match(sitemap, /hreflang="fr-CA"/);
   assert.match(notFound, /name="robots" content="noindex,follow"/);
 });

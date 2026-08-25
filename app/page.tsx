@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { BrandLockup } from "./brand-lockup";
 
 const AMAZE_URL = "https://www.amazemontreal.com";
 const BOOKING_URLS = {
@@ -239,6 +240,11 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
   const bookingUrl = BOOKING_URLS[locale];
   const officialLocationUrl = BOOKING_URLS[locale];
   const teamBuildingUrl = sitePath(isFr ? "fr/evenements-de-groupe/" : "team-building/");
+  const cocktailBarUrl = sitePath(isFr ? "fr/bar-a-cocktails-vieux-montreal/" : "cocktail-bar-old-montreal/");
+  const menuUrl = sitePath(isFr ? "fr/menu/" : "menu/");
+  const privateEventsUrl = sitePath(isFr ? "fr/evenements-prives/" : "private-events/");
+  const escapeGamesUrl = sitePath(isFr ? "fr/jeux-evasion/" : "escape-games/");
+  const faqUrl = sitePath(isFr ? "fr/faq/" : "faq/");
   const t = (value: string) => translate(locale, value);
   const localizedCocktails = cocktails.map((item) => localizeItem(item, locale));
   const localizedZeroProof = zeroProof.map((item) => localizeItem(item, locale));
@@ -283,41 +289,41 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
     <main id="top" lang={locale}>
       <header className="site-header">
         <a className="brand" href="#top" aria-label={isFr ? "Accueil — Inventions par A\\Maze" : "Inventions by A Maze home"} onClick={closeMenu}>
-          <img className="brand-lockup" src={sitePath(isFr ? "images/inventions-header-lockup-fr-transparent.webp" : "images/inventions-header-lockup.png")} alt="" width="315" height="195" />
+          <BrandLockup locale={locale} compact />
         </a>
         <nav className="desktop-nav" aria-label={isFr ? "Navigation principale" : "Primary navigation"}>
-          <a href="#bar">{t("The bar")}</a><a href="#menu">Menu</a><a href="#games">{t("Escape games")}</a><a href={teamBuildingUrl}>{t("Groups")}</a><a href="#visit">{t("Visit")}</a>
+          <a href={cocktailBarUrl}>{isFr ? "Le bar" : "The bar"}</a><a href={menuUrl}>Menu</a><a href={privateEventsUrl}>{isFr ? "Événements privés" : "Private events"}</a><a href={escapeGamesUrl}>{t("Escape games")}</a><a href="#visit">{t("Visit")}</a>
         </nav>
         <div className="header-actions">
           <a className="language-link" href={sitePath(isFr ? "" : "fr/")} hrefLang={isFr ? "en" : "fr"} lang={isFr ? "en" : "fr"} aria-label={isFr ? "EN — Version anglaise" : "FR — Version française"}>{isFr ? "EN" : "FR"}</a>
-          <a className="button button-small header-book" href={bookingUrl}>{t("Book an experience")}</a>
+          <a className="button button-small header-book" href={MAPS_URL} target="_blank" rel="noreferrer">{isFr ? "Itinéraire" : "Directions"}</a>
           <button className={`menu-toggle${mobileOpen ? " is-open" : ""}`} type="button" aria-label={mobileOpen ? (isFr ? "Fermer le menu" : "Close navigation") : (isFr ? "Ouvrir le menu" : "Open navigation")} aria-expanded={mobileOpen} aria-controls="mobile-navigation" onClick={() => setMobileOpen((open) => !open)}><span /><span /></button>
         </div>
         <nav className={`mobile-nav${mobileOpen ? " is-open" : ""}`} id="mobile-navigation" aria-label={isFr ? "Navigation mobile" : "Mobile navigation"}>
-          <a href="#bar" onClick={closeMenu}>{t("The bar")}</a><a href="#menu" onClick={closeMenu}>Menu</a><a href="#games" onClick={closeMenu}>{t("Escape games")}</a><a href={teamBuildingUrl} onClick={closeMenu}>{t("Groups")}</a><a href="#visit" onClick={closeMenu}>{t("Visit")}</a><a href={bookingUrl}>{t("Book an experience")} ↗</a>
+          <a href={cocktailBarUrl} onClick={closeMenu}>{isFr ? "Le bar" : "The bar"}</a><a href={menuUrl} onClick={closeMenu}>Menu</a><a href={privateEventsUrl} onClick={closeMenu}>{isFr ? "Événements privés" : "Private events"}</a><a href={teamBuildingUrl} onClick={closeMenu}>Team building</a><a href={escapeGamesUrl} onClick={closeMenu}>{t("Escape games")}</a><a href={faqUrl} onClick={closeMenu}>FAQ</a><a href={MAPS_URL} target="_blank" rel="noreferrer">{isFr ? "Itinéraire" : "Get directions"} ↗</a>
         </nav>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-copy">
           <span className="hero-copy-frame" aria-hidden="true" />
-          <p className="eyebrow">{isFr ? "Montréal · Vieux-Port · Service no 48" : "Montréal · Old Port · Service No. 48"}</p>
-          <h1 id="hero-title"><span className="sr-only">{isFr ? "Inventions par A\\Maze. Le courant passe." : "Inventions by A Maze. The current is on."}</span><img className="hero-lockup" src={sitePath(isFr ? "images/inventions-wordmark-lockup-fr-transparent.webp" : "images/inventions-wordmark-lockup.png")} alt="" width={isFr ? 1200 : 1010} height={isFr ? 675 : 510} /></h1>
-          <p className="hero-lede">{t("Tesla-inspired cocktails, curious plates and immersive A\\Maze escape games in Montréal’s Old Port.")}</p>
-          <a className="hero-endorsement" href={officialLocationUrl}><span>{isFr ? "Le premier bar à cocktails de la famille" : "The first cocktail bar in the"}</span><img src={sitePath("images/amaze-official-logo.webp")} alt="A\\Maze" width="1000" height="203" /></a>
+          <p className="eyebrow">{isFr ? "Montréal · Vieux-Montréal" : "Montréal · Old Montreal"}</p>
+          <BrandLockup locale={locale} className="hero-brand-lockup" />
+          <h1 id="hero-title">{isFr ? "Un laboratoire de cocktails dans le Vieux-Montréal" : "A cocktail laboratory in Old Montreal"}</h1>
+          <p className="hero-lede">{isFr ? "Cocktails inspirés de Tesla, petites assiettes et expériences immersives à l’intérieur d’A\\Maze Vieux-Port. Aucun jeu d’évasion requis." : "Tesla-inspired cocktails, small plates and immersive experiences inside A\\Maze Old Port. No escape game required."}</p>
           <div className="hero-actions">
-            <a className="button button-solid" href={bookingUrl}>{t("Book an experience")}</a>
-            <a className="button" href="#menu">{t("View the menu")}</a>
+            <a className="button button-solid" href="#menu">{t("View the menu")}</a>
+            <a className="button" href={MAPS_URL} target="_blank" rel="noreferrer">{isFr ? "Obtenir l’itinéraire" : "Get directions"}</a>
           </div>
-          <div className="hero-meta" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{isFr ? "480, rue Saint-Jean" : "480 Rue Saint-Jean"}</span><span>{isFr ? "25 places" : "25 seats"}</span><span>{isFr ? "Jeux en FR / EN" : "EN / FR games"}</span></div>
+          <a className="hero-secondary-link" href={escapeGamesUrl}>{isFr ? "Ajouter un jeu d’évasion à votre visite" : "Add an escape game to your visit"} →</a>
+          <div className="hero-meta" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{isFr ? "Sans réservation selon les places" : "Walk-ins welcome"}</span><span>{isFr ? "Aucun jeu requis" : "No game required"}</span><span>{isFr ? "Dans A\\Maze Vieux-Port" : "Inside A\\Maze Old Port"}</span></div>
         </div>
         <div className="hero-visual">
-          <img className="hero-bar-photo" src={sitePath("images/bartender.webp")} alt={isFr ? "Un barman d’Inventions prépare un cocktail au bar du Vieux-Port" : "An Inventions bartender preparing a cocktail at the Old Port bar"} fetchPriority="high" decoding="async" width="1200" height="1200" />
-          <figure className="hero-cocktail-inset"><img src={sitePath("images/venue-cocktails-current.webp")} alt={isFr ? "Trois cocktails signatures servis chez Inventions" : "Three signature cocktails served at Inventions"} decoding="async" width="800" height="1200" /><figcaption>{isFr ? "Cocktails maison · Vieux-Port" : "Original cocktails · Old Port"}</figcaption></figure>
+          <img className="hero-bar-photo" src={sitePath("images/hero-cocktails.jpg")} alt={isFr ? "Trois cocktails signatures servis chez Inventions dans le Vieux-Montréal" : "Three signature cocktails served at Inventions in Old Montreal"} fetchPriority="high" decoding="async" width="1800" height="1800" />
         </div>
       </section>
 
-      <section className="ticker" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{t("Signature cocktails")}</span><i>✦</i><span>{t("Wine & local beer")}</span><i>✦</i><span>{t("Three immersive games")}</span><i>✦</i><span>{t("Private groups")}</span></section>
+      <section className="ticker" aria-label={isFr ? "Points forts du lieu" : "Venue highlights"}><span>{isFr ? "Cocktails théâtraux originaux" : "Original theatrical cocktails"}</span><i>✦</i><span>{isFr ? "Atmosphère cachée du Vieux-Montréal" : "Hidden Old Montreal atmosphere"}</span><i>✦</i><span>{isFr ? "Jeux d’évasion sous le même toit" : "Escape games under the same roof"}</span></section>
 
       <section className="bar-section section-shell" id="bar">
         <div className="bar-gallery">
@@ -325,10 +331,14 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
           <figure className="bar-photo bar-photo-detail"><img src={sitePath("images/venue-drink-current.webp")} alt={isFr ? "Un cocktail signature servi dans une tasse en cuivre chez Inventions" : "A signature cocktail served in a copper mug at Inventions"} loading="lazy" decoding="async" width="1000" height="714" /></figure>
         </div>
         <div className="bar-copy">
-          <p className="eyebrow">{t("The bar · After the laboratory")}</p>
-          <h2>{t("An evening")}<br />{t("in progress.")}</h2>
-          <p className="section-lede">{isFr ? "Inventions est un bar à cocktails inspiré des travaux de Nikola Tesla, installé à l’intérieur du centre de jeux d’évasion A\\Maze Vieux-Port. Venez avant ou après votre jeu pour découvrir des créations maison, des bières artisanales montréalaises, du vin et quelques bouchées." : "Inventions is a cocktail bar inspired by Nikola Tesla’s work, housed inside the A\\Maze Old Port escape-game venue. Come before or after your game for original cocktails, Montréal craft beer, wine and a concise menu of small bites."}</p>
-          <div className="fact-grid"><div><strong>25</strong><span>{t("seats")}</span></div><div><strong>3</strong><span>{t("games")}</span></div><div><strong>7/7</strong><span>{t("days open")}</span></div></div>
+          <p className="eyebrow">{isFr ? "Pourquoi Inventions" : "Why Inventions"}</p>
+          <h2>{isFr ? "Un bar caché." : "A hidden bar."}<br />{isFr ? "Une vraie raison de venir." : "A real reason to visit."}</h2>
+          <p className="section-lede">{isFr ? "Inventions est un bar à cocktails intime inspiré des travaux de Nikola Tesla, installé à l’intérieur d’A\\Maze Vieux-Port. Venez simplement prendre un verre, ou ajoutez un jeu d’évasion à votre soirée." : "Inventions is an intimate cocktail bar inspired by Nikola Tesla’s work, hidden inside A\\Maze Old Port. Come simply for drinks, or add an escape game to the evening."}</p>
+          <div className="benefit-grid">
+            <article><span>01</span><strong>{isFr ? "Cocktails originaux" : "Original cocktails"}</strong><p>{isFr ? "Des recettes théâtrales qui racontent une invention, sans tomber dans le bar à thème kitsch." : "Theatrical drinks that tell an invention’s story without turning the room into a costume set."}</p></article>
+            <article><span>02</span><strong>{isFr ? "Ambiance Vieux-Montréal" : "Old Montreal atmosphere"}</strong><p>{isFr ? "Un salon discret, chaleureux et intime au cœur du quartier historique." : "A discreet, warm and intimate lounge in the heart of the historic district."}</p></article>
+            <article><span>03</span><strong>{isFr ? "Jeux en option" : "Games are optional"}</strong><p>{isFr ? "Prenez un verre sans jouer, ou combinez bar et jeu d’évasion sous le même toit." : "Drop in without playing, or combine the bar with a private escape game under one roof."}</p></article>
+          </div>
           <a className="text-link" href="#visit">{t("Plan your visit")} <span>↘</span></a>
           <a className="text-link amaze-location-link" href={officialLocationUrl}>{isFr ? "Découvrir A\\Maze Vieux-Port" : "Discover A\\Maze Old Port"} <span>↗</span></a>
         </div>
@@ -336,7 +346,7 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
 
       <section className="menu-section" id="menu" aria-labelledby="menu-title">
         <div className="menu-heading section-shell">
-          <div><p className="eyebrow">{t("The bill of fare · Current selection")}</p><h2 id="menu-title">{t("The menu")}</h2><p className="menu-subtitle">{t("Choose your current")}</p></div>
+          <div><p className="eyebrow">{isFr ? "Boissons et bouchées" : "Drinks & small plates"}</p><h2 id="menu-title">{isFr ? "Menu de cocktails" : "Cocktail menu"}</h2></div>
           <p>{t("Select a cocktail to read the story behind the invention.")}</p>
         </div>
         <div className="menu-tabs" aria-label={isFr ? "Catégories du menu" : "Menu categories"}>
@@ -356,7 +366,7 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
       </section>
 
       <section className="games-section section-shell" id="games" aria-labelledby="games-title">
-        <div className="games-heading"><div><p className="eyebrow">{t("Three ways into the story")}</p><h2 id="games-title">{t("Choose your")}<br /><em>{t("experiment.")}</em></h2></div><p>{t("One immersive room, one puzzle chest and one outdoor expedition. Every booking is private to your group and playable in English or French.")}</p></div>
+        <div className="games-heading"><div><p className="eyebrow">{isFr ? "Facultatif, mais très tentant" : "Optional, but tempting"}</p><h2 id="games-title">{isFr ? "Jeux d’évasion" : "Escape games"}</h2></div><p>{isFr ? "Vous n’avez pas besoin de jouer pour visiter le bar. Si vous voulez prolonger la soirée, choisissez une salle immersive, un coffre à énigmes ou une aventure extérieure. Chaque réservation est privée et disponible en français ou en anglais." : "You never need to play a game to visit the bar. If you want to extend the night, choose an immersive room, a puzzle chest or an outdoor adventure. Every booking is private and available in English or French."}</p></div>
         <div className="game-grid">
           <article className="game-card game-card-tesla"><div className="game-image"><img src={sitePath("images/game-tesla.webp")} alt={isFr ? "Scène des Énigmes de Tesla avec une ampoule électrique lumineuse" : "Tesla’s Enigmas scene with a glowing electric bulb"} loading="lazy" decoding="async" width="1500" height="906" /><span>01 · {t("Indoor")}</span></div><div className="game-card-body"><p className="eyebrow">{isFr ? "2 à 6 joueurs · 60 min · 45 % de réussite" : "2–6 players · 60 min · 45% success"}</p><h3>{t("Tesla’s Enigmas")}</h3><p>{t("Enter Tesla’s abandoned study, follow the experiments and unlock interconnected mechanisms to discover what he left behind.")}</p><div className="game-card-footer"><strong>$37 <small>{t("/ person")}</small></strong><a href={isFr ? "https://www.amazemontreal.com/fr/enigmes-de-tesla-jeu-devasion-vieux-port" : "https://www.amazemontreal.com/teslas-enigmas-escape-game-old-port"} target="_blank" rel="noreferrer">{t("Details")} ↗</a></div></div></article>
           <article className="game-card game-card-chest"><div className="game-image"><img src={sitePath("images/game-chest-current.webp")} alt={isFr ? "Des joueurs ouvrent Le coffre du mort" : "Players opening the Dead Man’s Chest"} loading="lazy" decoding="async" width="1000" height="632" /><span>02 · {t("In the lounge")}</span></div><div className="game-card-body"><p className="eyebrow">{isFr ? "2 à 3 joueurs · 60 min · 60 % de réussite" : "2–3 players · 60 min · 60% success"}</p><h3>{t("Dead Man’s Chest")}</h3><p>{t("Read the symbols, solve the riddles and open every hidden compartment before the mysterious chest keeps its secret.")}</p><div className="game-card-footer"><strong>$20 <small>{t("/ person")}</small></strong><a href={isFr ? "https://www.amazemontreal.com/fr/excellente-idee-de-rendez-vous-en-couple" : "https://www.amazemontreal.com/escape-game-for-2-players-montreal-man-chest"} target="_blank" rel="noreferrer">{t("Details")} ↗</a></div></div></article>
@@ -368,12 +378,32 @@ export function InventionsPage({ locale = "en" }: { locale?: Locale }) {
       <OrnamentDivider />
 
       <section className="groups-section" id="groups">
-        <div className="groups-image"><img src={sitePath("images/groups-current.webp")} alt={isFr ? "Un groupe profite de cocktails signatures chez Inventions" : "A group enjoying signature cocktails at Inventions"} loading="lazy" decoding="async" width="1200" height="780" /></div>
-        <div className="groups-copy"><p className="eyebrow">{t("Private events · Team building · 5 à 7")}</p><h2>{t("Bring your")}<br /><em>{t("brightest minds.")}</em></h2><p>{t("Combine a private game with drinks in the lounge for a team night, celebration or small corporate event in the Old Port.")}</p><a className="button" href={teamBuildingUrl}>{t("Explore Old Port team building")}</a></div>
+        <div className="groups-image"><img src={sitePath("images/private-events-lounge.jpg")} alt={isFr ? "Le salon d’Inventions configuré pour un événement privé" : "The Inventions lounge arranged for a private event"} loading="lazy" decoding="async" width="1800" height="1285" /></div>
+        <div className="groups-copy"><p className="eyebrow">{isFr ? "Location privée · 5 à 7 · Célébrations" : "Private rental · Corporate 5 à 7 · Celebrations"}</p><h2>{isFr ? "Événements privés" : "Private events"}</h2><p>{isFr ? "Privatisez le bar pour votre équipe, anniversaire ou célébration. Cocktails, options sans alcool et bouchées sont disponibles; le jeu d’évasion reste un ajout facultatif, jamais une obligation." : "Reserve the bar for a team gathering, birthday or celebration. Cocktails, zero-proof options and small plates are available; an escape game is an optional add-on, never a requirement."}</p><div className="groups-actions"><a className="button button-solid" href={privateEventsUrl}>{isFr ? "Vérifier la disponibilité" : "Check event availability"}</a><a className="text-link" href={teamBuildingUrl}>{isFr ? "Voir le team building" : "Explore team building"} →</a></div></div>
+      </section>
+
+      <section className="proof-section section-shell" aria-labelledby="proof-title">
+        <div className="proof-intro"><p className="eyebrow">{isFr ? "Une expérience A\\Maze depuis 2014" : "Immersive hospitality since 2014"}</p><h2 id="proof-title">{isFr ? "Créé par l’équipe derrière A\\Maze Montréal." : "From the team behind A\\Maze Montréal."}</h2><p>{isFr ? "Plus d’une décennie à créer des expériences immersives à Montréal — maintenant autour du verre autant qu’autour du jeu." : "More than a decade creating immersive experiences in Montréal—now built around the drink as much as the game."}</p></div>
+        <a className="rating-card" href={MAPS_URL} target="_blank" rel="noreferrer" aria-label={isFr ? "Voir les avis Google" : "View Google reviews"}><strong>4.6 <span>★★★★★</span></strong><small>{isFr ? "284 avis Google · aperçu vérifié en août 2026" : "284 Google reviews · snapshot checked August 2026"}</small><b>{isFr ? "Voir sur Google" : "See on Google"} ↗</b></a>
+        <div className="review-grid">
+          <blockquote><p>{isFr ? "« Le thème Nikola Tesla est vraiment réussi — original et très amusant. »" : "“The Nikola Tesla theme is genuinely cool, original and fun.”"}</p><cite>— Google guest review</cite></blockquote>
+          <blockquote><p>{isFr ? "« J’adore qu’il y ait aussi un bar sur place. »" : "“Love that there is a bar there too.”"}</p><cite>— Google guest review</cite></blockquote>
+          <blockquote><p>{isFr ? "« Les cocktails après le jeu étaient la parfaite conclusion. »" : "“Cocktails after the game were the perfect finish.”"}</p><cite>— Google guest review</cite></blockquote>
+        </div>
+      </section>
+
+      <section className="faq-preview section-shell" aria-labelledby="faq-preview-title">
+        <div><p className="eyebrow">FAQ</p><h2 id="faq-preview-title">{isFr ? "Avant de venir" : "Before you visit"}</h2></div>
+        <div className="faq-list">
+          <details><summary>{isFr ? "Puis-je venir sans faire de jeu d’évasion?" : "Can I visit without playing an escape game?"}</summary><p>{isFr ? "Oui. Inventions est un bar à cocktails ouvert aux visiteurs avec ou sans jeu." : "Yes. Inventions is a cocktail bar and welcomes guests with or without an escape-game booking."}</p></details>
+          <details><summary>{isFr ? "Faut-il réserver pour le bar?" : "Do I need a reservation for the bar?"}</summary><p>{isFr ? "Les visites spontanées sont bienvenues selon les places disponibles. Pour un groupe ou une privatisation, contactez-nous d’avance." : "Walk-ins are welcome when space is available. For groups or private rental, contact the team in advance."}</p></details>
+          <details><summary>{isFr ? "Peut-on combiner un verre et un jeu?" : "Can we combine drinks and a game?"}</summary><p>{isFr ? "Oui. Réservez le jeu séparément, puis passez au bar avant ou après." : "Yes. Book the game separately, then visit the bar before or after."}</p></details>
+        </div>
+        <a className="button" href={faqUrl}>{isFr ? "Toutes les questions" : "Read the full FAQ"}</a>
       </section>
 
       <section className="visit-section section-shell" id="visit" aria-labelledby="visit-title">
-        <div className="visit-intro"><div><p className="eyebrow">{isFr ? "Montréal · Vieux-Port" : "Montréal · Old Port"}</p><h2 id="visit-title">{t("Find the")}<br /><em>{t("current.")}</em></h2></div><a className="address-link" href={MAPS_URL} target="_blank" rel="noreferrer"><span>{isFr ? "480, rue Saint-Jean" : "480 Rue Saint-Jean"}<br />Montréal, QC H2Y 2S3</span><b>↗</b></a></div>
+        <div className="visit-intro"><div><p className="eyebrow">{isFr ? "Montréal · Vieux-Montréal" : "Montréal · Old Montreal"}</p><h2 id="visit-title">{isFr ? "Visiter Inventions" : "Visit Inventions"}</h2></div><a className="address-link" href={MAPS_URL} target="_blank" rel="noreferrer"><span>{isFr ? "480, rue Saint-Jean" : "480 Rue Saint-Jean"}<br />Montréal, QC H2Y 2S3</span><b>↗</b></a></div>
         <div className="visit-details">
           <div className="hours-card"><p className="eyebrow">{t("Opening hours")}</p><dl><div><dt>{t("Monday—Friday")}</dt><dd>{t("2 pm—11 pm")}</dd></div><div><dt>{t("Saturday—Sunday")}</dt><dd>{t("10 am—11 pm")}</dd></div></dl><p className="small-note">{t("Reservations are not taken by phone. Book online or email the team for help.")}</p></div>
           <div className="arrival-card"><div><p className="eyebrow">{t("Arrive")}</p><h3>Square-Victoria–OACI</h3><p>{t("Orange Line · a short walk through Old Montréal.")}</p></div><div><p className="eyebrow">{t("Parking")}</p><p>{isFr ? "508–510, rue Saint-Jean, ou Indigo au 230, rue Saint-Sacrement." : "508–510 Rue Saint-Jean, or Indigo at 230 Rue Saint-Sacrement."}</p></div></div>

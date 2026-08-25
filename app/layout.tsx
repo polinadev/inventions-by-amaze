@@ -3,13 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://polinadev.github.io/inventions-by-amaze/"),
-  title: "Tesla-Inspired Cocktail Bar & Escape Games | Inventions Montréal",
+  title: "Cocktail Bar in Old Montreal | Inventions by A\\Maze",
   description:
-    "Discover Tesla-inspired cocktails, immersive escape games and private events inside A\\Maze Old Port in Montréal.",
+    "A Tesla-inspired cocktail bar inside A\\Maze Old Port. Original cocktails, small plates and zero-proof drinks—no escape game required.",
   alternates: { canonical: "/", languages: { "en-CA": "/", "fr-CA": "/fr/" } },
   openGraph: {
-    title: "Tesla-Inspired Cocktail Bar & Escape Games | Inventions Montréal",
-    description: "Discover Tesla-inspired cocktails, immersive escape games and private events inside A\\Maze Old Port in Montréal.",
+    title: "Cocktail Bar in Old Montreal | Inventions by A\\Maze",
+    description: "A Tesla-inspired cocktail bar inside A\\Maze Old Port. No escape game required.",
     type: "website",
     images: [{
       url: "/images/inventions-social-preview.png",
