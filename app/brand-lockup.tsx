@@ -16,8 +16,8 @@ export function BrandLockup({ locale = "en", compact = false, className = "" }: 
         <img
           src={sitePath("images/inventions-primary-wordmark.webp")}
           alt=""
-          width="882"
-          height="374"
+          width="1014"
+          height="416"
         />
       </span>
       <span className="brand-system-parent" aria-hidden="true">

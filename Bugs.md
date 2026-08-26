@@ -21,6 +21,7 @@
 - Private events and team building now have bar-first landing pages, published-capacity context, optional game add-ons, custom-quote language, and a structured inquiry form.
 - Dedicated bilingual menu, cocktail-bar, private-event, team-building, escape-game, and FAQ routes are prerendered and included in the 14-URL sitemap.
 - The hero/header lockup no longer relies on mismatched fixed aspect ratios, `overflow: hidden`, or `mix-blend-mode`; the full ornament and wordmark now remain visible and optically centered at every breakpoint.
+- The transparent primary wordmark was rebuilt after its first export clipped the foot of the lightning `I`; the full glyph is restored and intrinsic right-side safe space now aligns the upper circular `I` medallion to the hero's central axis without a CSS offset.
 - The reusable footer/menu monogram now uses the same outlined `I`-in-circle SVG geometry as the wine-glass production mark instead of a CSS approximation.
 - The brand lockup and labelled hero/menu groups now expose valid ARIA roles instead of applying labels to semantically neutral elements.
 
